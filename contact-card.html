@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8>
+        <title>Coding Dojo Member Form</title>
+        <link rel=stylesheet href=contact-card.css>
+        <script src=https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js></script>
+        <script>
+        
+        // <p id=hidden>' + $('#bio').val() + '</p>
+        
+        function attachDescription(){
+            $('.callback').click(function(){
+                $(this).text($('#bio').val())});
+        }
+
+        $(document).ready(function(){
+
+            $('body').ready(function(){
+                $('#thankyou').hide() } );
+            
+            $('form').submit(function(){    // .submit used as a listener
+                return false;
+            });
+            
+            $('button').click(function(){
+
+                $('#thankyou').fadeIn();            // thanks user for submitting info
+
+                console.log($('form').serialize())  // sends machine data to console
+                
+                $('#cards').append(
+                    '<div class="card">' +
+                    '<img src=avatar.png>' +
+                    '<h3>(Default Avatar)</h3>' +
+                    '<h2>' + $('#first_name').val() + " "
+                           + $('#last_name').val() + '</h2>' +
+                    '<p id=hidden class=callback>(Click HERE for description)</p>' +
+                    '</div>'
+                );
+
+                attachDescription();
+
+            });
+        });
+        </script>
+    </head>
+    <body>
+
+        <div id=wrapper>
+            <h1>Coding Dojo Member Form</h1>
+            <div id=member-form>
+                <div id=labels>
+                    <label for=first_name>First Name</label>
+                    <label for=last_name>Last Name</label>
+                    <label for=bio>Short Bio</label>
+                </div>
+                <div id=fields>
+                    <form>
+                        <input id=first_name type=text name=first_name>
+                        <input id=last_name type=text name=last_name>
+                        <textarea id=bio name=bio rows=6 maxlength="200"></textarea>
+                        <h3>(200 characters max)</h3>
+                    </form>
+                </div>
+                <div id=submission>
+                    <img src=logo.png class=logo>
+                    <p>Please check all information before submitting.</p>
+                    <button class=click>Submit</button>
+                    <p id=thankyou>Thanks for updating your info!</p>
+                </div>
+            </div>
+        </div>
+        <div id=cards></div>
+
+    </body>
+</html>
